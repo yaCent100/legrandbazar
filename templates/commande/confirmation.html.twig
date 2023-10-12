@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande Valider
+{% endblock %}
+{% block content %}
+
+	<div class="text-center">
+		<h2 class="text-light align-self-center">
+			Votre Commande a bien été confirmé. Vous la recevrez dans les plus bref délais...
+			<br><br>
+			Le GRAND BAZAR - où chaque achat est une aventure en soi
+		</h1>
+		<img src="{{ asset('assets/images/merci.jpg') }}" class="img-fluid mt-3"><br><br><br>
+
+		<a href="{{ path('app_account') }}">Mon compte</a><br>
+	</div>
+
+
+{% endblock %}

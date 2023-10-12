@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande - le grand bazar
+{% endblock %}
+
+{% block content %}
+	<h1 class="text-light">Ma commande
+		{{ random() * 10*10|number_format(0,'','') }}
+	</h1>
+	<a href="{{ path('account_commande') }}" class="text-decoration-none">
+		<i class="bi bi-arrow-bar-left"></i>
+		Retour</a><br><br>
+
+	<div class=" text-light">
+		<strong>Commande passée le :
+		</strong>
+		{{ commande.creatAt|date('d/m/y')}}<br>
+		<strong>Référence de ma commande :
+		</strong>
+		{{ random() * 10*10|number_format(0,'','') }}<br>
+		<strong>Transporteur choisi :
+		</strong>Collissimo
+	</div>
+	<hr class="text-danger"><br>
+
+	<div class="mb-3 fs-5 text-info">
+		<strong>Détails de la Commande</strong>
+	</div>
+	<table class="table table-dark table-striped fs-5">
+		<thead class="fs-5">
+			<tr>
+				<th scope="col">Produit</th>
+				<th scope="col">Quantité</th>
+				<th scope="col">Prix Unitaire</th>
+				<th scope="col">Total</th>
+			</tr>
+		</thead>
+		<tbody class="fs-6">
+			{% for facture in commande.getFactures() %}
+				{% for product in facture.getProduit() %}
+					<tr>
+
+						<td><img src="/assets/images/uploads/{{ product.image }}" alt="{{product.name}}" class="img-fluid m-1" width="30px">
+							{{product.getName()}}</td>
+						<td>x{{facture.getQuantity()}}</td>
+						<td>{{ ((product.getPrice()) / 100) | number_format(2, ',', '.') }}
+							€</td>
+						<td>{{(facture.getPrixLigne())}}
+							€</td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		</tbody>
+	</tbody>
+</table>
+
+<div class="text-end fs-6 text-light">
+	<strong>Sous-total :
+	</strong>
+	{{ commande.prixTotal|number_format(2,',','.') }}
+	€<br>
+	<strong>Livraison :
+	</strong>19.00 €<br>
+	<strong>Total :
+	</strong>
+	{{ (commande.prixTotal + 19.00)|number_format(2,',','.')}}
+	€
+</div>{% endblock %}

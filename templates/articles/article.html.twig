@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ article.titre }}
+{% endblock %}
+
+{% block content %}
+	<div class="container text-light row justify-content-center">
+		<h2 class="text-center m-3">{{ article.titre }}</h2><br>
+		<div class="col-10 fs-5 m-3 ">{{ article.content|raw }}</div><br>
+
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+
+			{{ form_start(commentForm) }}
+			{{ form_widget(commentForm) }}
+			<button type="submit" class="btn btn-primary">Envoyer</button>
+			{{ form_end(commentForm) }}
+		{% else %}
+			<p>
+				<a href="{{ path('app_home')}}">Connectez-vous</a>
+				pour laisser un commentaire
+
+			</p>
+		{% endif %}
+		<div class="mb-4">
+			<h3>Commentaires</h3>
+
+			{% for commentaires in article.commentaires|sort((a, b) => b.createdAt.timestamp - a.createdAt.timestamp) %}
+
+
+				<p>
+					<span class="text-info fs-5">{{ commentaires.content}}</span><br>
+
+					<small>Par
+						{{ commentaires.user.pseudo }}
+						le
+						{{ commentaires.createdAt|date('d/m/Y') }}</small>
+				</p>
+
+
+			{% else %}
+				<p>Aucun commentaire pour le moment</p>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

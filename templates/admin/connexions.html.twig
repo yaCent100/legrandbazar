@@ -1,0 +1,72 @@
+{# templates/admin/index.html.twig #}
+
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block page_title %}Connexions
+{% endblock %}
+
+{% block main %}
+	<div class="row">
+		<div class="col">
+			<div class="card">
+				<div class="card-header fs-1">Connexions</div>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Pseudo</th>
+								<th>Aujourd'hui</th>
+								<th>Cette semaine</th>
+								<th>Ce mois-ci</th>
+								<th>Cette année</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								<tr>
+									<td>{{ user.pseudo }}</td>
+									<td>
+										{% set todayConnections = 0 %}
+										{% for connexion in user.connexions %}
+											{% if connexion.createdAt >= date('-1 day') %}
+												{% set todayConnections = todayConnections + 1 %}
+											{% endif %}
+										{% endfor %}
+										{{ todayConnections }}
+									</td>
+									<td>
+										{% set weekConnections = 0 %}
+										{% for connexion in user.connexions %}
+											{% if connexion.createdAt >= date('-1 week') %}
+												{% set weekConnections = weekConnections + 1 %}
+											{% endif %}
+										{% endfor %}
+										{{ weekConnections }}
+									</td>
+									<td>
+										{% set monthConnections = 0 %}
+										{% for connexion in user.connexions %}
+											{% if connexion.createdAt >= date('-1 month') %}
+												{% set monthConnections = monthConnections + 1 %}
+											{% endif %}
+										{% endfor %}
+										{{ monthConnections }}
+									</td>
+									<td>
+										{% set yearConnections = 0 %}
+										{% for connexion in user.connexions %}
+											{% if connexion.createdAt >= date('-1 year') %}
+												{% set yearConnections = yearConnections + 1 %}
+											{% endif %}
+										{% endfor %}
+										{{ yearConnections }}
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

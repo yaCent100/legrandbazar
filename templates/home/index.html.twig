@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block carousel %}{% endblock %}
+{% block content %}
+
+	<!-- Three columns of text below the carousel -->
+	<div class="row">
+		<div class="col-lg-4">
+			<i class="bi bi-pc-display fs-1 text-info"></i>
+			<h2 class="text-light">Informatique</h2>
+			<p class="fs-6 text-light">Votre univers informatique en un clic : découvrez nos produits de qualité supérieure à des prix imbattables !</p>
+			<a class="btn btn-info m-2 text-black" href="{{ path('app_shop') }}">Shop &raquo;</a>
+
+		</div>
+		<!-- /.col-lg-4 -->
+		<div class="col-lg-4">
+			<i class="bi bi-controller fs-1 text-danger"></i>
+			<h2 class="text-light">Gaming</h2>
+			<p class="fs-6 text-light">Plongez dans l'univers du gaming avec nos produits qui vous offriront une expérience de jeu inégalée !</p>
+			<a class="btn btn-danger m-2 text-black" href="{{ path('app_shop') }}">Shop &raquo;</a>
+
+		</div>
+		<!-- /.col-lg-4 -->
+		<div class="col-lg-4">
+			<i class="bi bi-tv fs-1 text-success"></i>
+			<h2 class="text-light">Multimedia</h2>
+			<p class="fs-6 text-light">Vivez une expérience multimédia immersive avec notre large choix de produits pour la maison : télévisions etc.</p>
+			<a class="btn btn-success m-2 text-black" href="{{ path('app_shop') }}">Shop &raquo;</a>
+
+		</div>
+		<!-- /.col-lg-4 -->
+	</div>
+
+
+	<hr class="featurette-divider text-danger ">
+
+	<div class="row featurette">
+		<div class="col-md-7 my-auto " id="login-form">
+			<h2 class="featurette-heading text-white">Connection Direct à votre Espace Membres</h2><br>
+
+			<form method="post" action="{{ path('app_home') }}" class="row justify-content-center">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+				<div class="row justify-content-center">
+					<input class="col-6 m-1 fs-4" type="text" placeholder="Votre pseudo" name="pseudo">
+					<input class="col-6 m-1 fs-4" type="password" placeholder="Votre mot de passe" name="password">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<button class="col-6 btn btn-primary m-1 fs-4" type="submit">Se Connecter</button>
+				</div>
+				<div class="col-6 m-1 fs-4">
+					<span class="m-1 fs-5 text-light">Pas de compte ?</span>
+					<a class="fs-5" href="{{ path('app_register') }}">S'inscrire</a>
+				</div>
+			</form>
+			<br>
+			<p class="lead text-light">
+				Un compte utilisateur vous permet de profiter de nombreux avantages, tels que la possibilité de changer votre mot de passe et votre adresse à tout moment, ainsi que la consultation de votre historique de commandes. Créez un compte dès maintenant pour vivre une expérience de shopping en ligne optimale.</p>
+		</div>
+		<div class="col-md-5 d-flex align-items-center">
+
+			<img class="img-fluid rounded mx-auto d-block" src="{{asset('assets/images/espacemembres.png')}}" alt="">
+
+		</div>
+	</div>
+
+	<hr class="featurette-divider text-danger">
+
+	<div class="row featurette">
+		<div class="col-md-6 order-md-2 ">
+			<h2 class="featurette-heading text-white">
+				Le Respect des Règles, pour le Bien-être de Tous
+			</h2><br>
+			<p class="lead text-light">
+				-> Ne pas harceler, insulter ou discriminer d'autres utilisateurs en ligne.<br>
+				-> Ne pas partager d'informations personnelles sur les autres utilisateurs.<br>
+				-> Respecter les règles de confidentialité et les conditions d'utilisation du site.<br>
+				-> Signaler tout contenu inapproprié ou toute activité suspecte aux administrateurs du site.</p>
+		</div>
+		<div class="col-md-6 order-md-1 my-auto  ">
+			<img class="img-fluid rounded mx-auto d-block" src="{{asset('assets/images/e-commerce.jpg')}}" alt="">
+		</div>
+	</div>
+
+	<hr class="featurette-divider text-danger">
+
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading text-white">Des Offres Exceptionnelles Chaque Jour
+				<span class="text-muted"></span>
+			</h2>
+			<p class="lead text-light">-> "Large Gamme de Produits" : Matériel informatique, produits multimédia et gaming, notre site ecommerce offre une variété de produits pour répondre à tous vos besoins.<br>
+				->	"Offres Exceptionnelles Chaque Jour" : En vous inscrivant, vous aurez accès à des offres exceptionnelles chaque jour, ainsi qu'à notre chat pour communiquer avec d'autres clients et commenter les dernières tendances de l'industrie de l'informatique.<br>
+				-> "Assistance Personnalisée" : Notre équipe dédiée est à votre disposition pour vous guider dans vos choix d'achat et répondre à toutes vos questions.
+
+
+			</p>
+		</div>
+		<div class="col-md-5  my-auto">
+			<img class="img-fluid rounded mx-auto d-block" src="{{asset('assets/images/e.jpg')}}" alt="">
+
+
+		</div>
+	</div>
+
+	<hr class="featurette-divider text-danger">
+{% endblock %}

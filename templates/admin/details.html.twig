@@ -1,0 +1,57 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block body_id 'easyadmin-commande-detail' %}
+
+{% block content %}
+	<div class="card">
+		<h1 class="card-header">
+			Détails de la commande #{{ commande.id }}
+		</h1>
+
+		<div class="card-body">
+			<div class="row">
+				<div class="col-sm-6">
+					<dl>
+						<dt>User</dt>
+						<dd>{{ commande.user.pseudo }}</dd>
+
+						<dt>Date de commande</dt>
+						<dd>{{ commande.creatAt|date('d/m/Y H:i:s') }}</dd>
+
+						<dt>Total</dt>
+						<dd>{{ commande.prixTotal|number_format(2, ',', ' ') }}
+							€</dd>
+					</dl>
+				</div>
+			</div>
+
+			<hr>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Quantité</th>
+						<th>Prix unitaire</th>
+						<th>Prix total</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for produit in produits %}
+						<tr>
+							<td>{{ produit.produit }}</td>
+							<td>{{ produit.quantite }}</td>
+							<td>{{ (produit.prixUnitaire / 100)|number_format(2, ',', ' ') }}
+								€</td>
+							<td>{{ (produit.prixTotal / 100)|number_format(2, ',', ' ') }}
+								€</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+	<style>
+		.message {
+			margin: 10px;
+		}
+
+		.message .bubble {
+			color: navy;
+			padding: 10px;
+			border-radius: 10px;
+			display: inline-block;
+			max-width: 70%;
+		}
+
+		.message.sender .bubble {
+			background-color: dodgerblue;
+			text-align: right;
+		}
+
+		.message:not(.sender) .bubble {
+			background-color: lightgray;
+			text-align: left;
+			color: brown;
+
+		}
+
+		.message .sender {
+			color: navy;
+
+		}
+
+		.message .sender-name {
+			font-style: italic;
+			font-weight: bold;
+
+		}
+		.bubble .sender-content {
+			color: navy;
+
+		}
+	</style>
+
+	<h1 class="text-center text-light">Mini-Chat</h1>
+
+	<div class="container rounded p-2" style="width: 800px; height: 800px;">
+		<div id="messages" class="bg-primary p-3 rounded text-white">
+			{% for message in messages|reverse %}
+				{% if loop.index <= 10 %}
+					<div class="message m-3 fs-6 {% if message.sender == app.user %}text-start{% else %}text-end{% endif %}">
+						<div class="bubble{% if message.sender == app.user %} sender{% endif %}">
+							<div class="sender-name{% if message.sender == app.user %} sender{% endif %}">
+								<i class="bi bi-person-circle"></i>
+								{{ message.sender.pseudo }}
+							</div>
+							<div class="sender-content">
+								{{ message.content }}
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		<div>
+			{{ form_start(form) }}
+			{{ form_row(form.content) }}
+			{{ form_row(form.submit) }}
+			{{ form_end(form) }}
+		</div>
+		<br><br><br>
+
+	</div>
+
+
+{% endblock %}

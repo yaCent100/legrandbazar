@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog-News
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="container text-light">
+
+		<h1 class="text-center mb-5">Liste des articles</h1>
+
+
+		{% for article in articles %}
+			<tr>
+				<table class="table table-striped">
+					<h4>{{ article.titre }}</h4>
+					<p>{{ article.content|striptags|slice(0, 500) }}</p>
+					<a href="{{ path('app_blog_show', { 'id': article.id }) }}" class="article-link" data-article-id="{{ article.id}}">Lire la suite</a>
+
+				</tr>
+				<table class="table table-striped">
+				{% endfor %}
+			</tr>
+		</table>
+
+
+	</div>
+{% endblock %}

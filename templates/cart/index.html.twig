@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier - Le Grand Bazar
+{% endblock %}
+
+{% block content %}
+	<h1 class="text-light">Mon Panier</h1>
+	<p class="text-light">Retrouver ici l'ensemble des produits que vous avez ajouté à votre panier.</p>
+	<a href="{{ path('app_shop') }}" class="text-decoration-none">
+
+		<i class="bi bi-caret-left"></i>
+		Shop</a>
+	<hr class="text-danger">
+
+	{% if cart | length > 0 %}
+
+		<table class="table table-dark table-striped mt-4">
+			<thead>
+				<tr>
+					<th scope="col">Produit</th>
+					<th scope="col"></th>
+					<th scope="col">Quantité</th>
+					<th scope="col">Prix</th>
+					<th scope="col">Total</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% set total = null %}
+				{% for product in cart %}
+					<tr>
+						<td><img src="assets/images/uploads/{{ product.product.image}}" alt=" {{product.product.name}} " height="100px"><br/></td>
+						<td>{{product.product.name}}<br/>
+							<small class="mt-1">{{product.product.titre}}</small>
+						</td>
+						<td>
+							<a href="{{ path('decrease_my_cart', {'id' : product.product.id}) }}">
+								<img src="{{ asset('assets/images/moins.png') }}" height="12px" alt="Retirer">
+							</a>
+							{{product.quantity}}
+							<a href="{{ path('add_to_cart', {'id' : product.product.id}) }}">
+								<img src="{{ asset('assets/images/plus.png')}}" height="12px" alt="Ajouter">
+							</a>
+						</td>
+						<td>{{ ((product.product.price * product.quantity) / 100)|number_format(2, ',' , '.')}}</td>
+						<td>
+							<a href="{{ path('delete_my_cart', { 'id' : product.product.id }) }}">
+								<img src="{{ asset('assets/images/delete.png')}}" height="25px" alt="Supprimer">
+							</a>
+						</td>
+
+					</tr>
+					{% set total =  total + (product.product.price * product.quantity) %}
+				{% endfor %}
+			</tbody>
+		</table>
+		<div>
+			<b class="text-light">Total de mon Panier :
+				{{ (total / 100)|number_format(2, ',' , '.')}}
+				€
+			</b>
+			<br/>
+
+			<a href="{{ path('commande') }}" class="btn btn-primary btn-block col-12 mt-5">Valider mon Panier</a>
+
+		</div>
+	{% else %}
+
+		<p>
+			<b class="text-light">Votre panier est vide</b>
+		</p>
+	{% endif %}
+{% endblock %}

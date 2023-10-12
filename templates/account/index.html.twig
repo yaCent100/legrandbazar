@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mon compte
+{% endblock %}
+
+
+{% block content %}
+
+	<h1 class="text-light mb-4">Mon Compte</h1>
+	<span class="text-light mb-4 fs-4">Bienvenue
+		{{app.user.getPrenom()}}
+	</span><br>
+	<span class="text-light mb-4 fs-4">C'est dans cette espace que vous allez pouvoir gérer toutes vos imformations personnelles</span>
+
+	<hr class="mt-5 text-danger">
+
+	<div class="row text-light m-5 ">
+
+		<div class="col-4">
+			<a href="{{ path('account_password') }}">
+				<img src="{{ asset('assets/images/cles.png')}}" alt="Modifier mot de passe" title="Modifier mot de passe" height="250px">
+			</a><br>
+		</div>
+
+		<div class="col-4">
+			<a href="{{ path('account_adress') }}">
+				<img src="{{ asset('assets/images/adresse.png')}}" alt="Modifier mon adresse" title="Modifier mon adresse" height="250px">
+			</a>
+		</div>
+
+		<div class="col-4">
+			<a href="{{ path('account_commande')}}">
+				<img src="{{ asset('assets/images/commandes.png')}}" alt="Mes commandes" title="Mes commandes" height="250px">
+			</a><br>
+		</div>
+
+
+	</div>
+{% endblock %}

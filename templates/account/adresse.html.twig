@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mon Adresse
+{% endblock %}
+
+{% block content %}
+
+
+	<div class="row justify-content-center">
+		<div class="text-center m-3">
+			<h1 class="text-light text-center">Modifier Mon Adresse</h1>
+			<a href="{{path('app_account')}}" class="text-decoration-none">
+				<i class="bi bi-arrow-bar-left"></i>Retour</a>
+		</div><br>
+		<hr class="text-danger">
+		{% if notification %}
+			<div class="alert alert-info col-6">{{ notification }}</div>
+
+		{% endif %}
+		<div class=" col-6 text-black bg-light p-3 m-3 border rounded">
+			{{ form(form) }}
+			</div>
+
+
+		</div>
+
+
+	{% endblock %}

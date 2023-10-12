@@ -1,0 +1,127 @@
+<doctype html>
+	<html lang="fr">
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<meta name="description" content="">
+			<meta name="generator" content="Jekyll v4.1.1">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+			<link rel="stylesheet" href="{{asset('assets/css/legrandbazar.css')}}">
+			<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+			<title>
+				{% block title %}Le Grand Bazar
+				{% endblock %}
+			</title>
+
+
+			<link
+			href="{{asset('assets/css/bootstrap2.min.css')}}" rel="stylesheet">
+
+
+			<!-- Custom styles for this template -->
+			<link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
+		</head>
+		<body>
+			<header>
+
+				<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-5">
+
+					<span class="navbar-brand fs-3">Le Grand B@z@r</span>
+
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active">
+								<a class="nav-link fs-4" href="{{ path('app_home') }}">
+									<i class="bi bi-house-fill fs-4 text-primary"></i>
+									Home
+
+								</a>
+							</li>
+							<li class="nav-item ">
+								<a class="nav-link fs-4 " href="{{ path('app_shop') }}">
+									<i class="bi bi-shop-window fs-4 text-primary"></i>
+									Shop
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link fs-4" href="{{ path('app_chat') }}">
+									<i class="bi bi-wechat fs-4 text-primary"></i>
+									Chat
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link fs-4 " href="{{ path('app_blog') }}">
+									<i class="bi bi-newspaper fs-4 text-primary"></i>
+									Blog-News
+								</a>
+							</li>
+						</ul>
+						<ul class="navbar-nav ms-auto">
+							{% if app.user %}
+								<li>
+									<a class="nav-link fs-5" href="{{ path('app_account') }}">
+										<i class="bi bi-person-circle fs-5 text-primary"></i>
+										Mon Compte</a>
+								</li>
+								<li>
+									<a class="nav-link fs-5" href="{{ path('app_logout') }}">
+										<i class="bi bi-toggle-on fs-5 text-primary"></i>
+										Deconnexion</a>
+								</li>
+
+								<li>
+									<a href=" {{path('cart')}}">
+										<img src="{{ asset( 'assets/images/panier.png')}}" class="me-2" alt="Mon panier" height="40px">
+									</a>
+								</li>
+							{% else %}
+								<li>
+									<a class="nav-link fs-5" href="{{ path('app_home') }}#login-form">
+										<i class="bi bi-person-circle fs-5 text-primary"></i>
+										Se Connecter</a>
+								</li>
+								<li>
+									<a class="nav-link fs-5" href="{{ path('app_register') }}">
+										<i class="bi bi-list-check fs-5 text-primary"></i>
+										Inscription</a>
+								</li>
+							{% endif %}
+						</ul>
+
+					</div>
+
+
+				</nav>
+			</body>
+		</body>
+	</html>
+</body></html></header><main role="main">{% if block('carousel') is defined %}
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="img-fluid" src="{{asset('assets/images/gaming.webp')}}" alt="">
+		</div>
+		<div class="carousel-item">
+			<img class="img-fluid" src="{{asset('assets/images/informatique.png')}}" alt="">
+		</div>
+		<div class="carousel-item">
+			<img class="img-fluid" src="{{asset('assets/images/multimed.jpg')}}" alt="">
+		</div>
+	</div>
+</div>
+<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+</a>
+<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+	<span class="carousel-control-next-icon" aria-hidden="true"></span>
+</a></div>{% endif %}<div class="container marketing {% if block('carousel') is not defined %} mt-5 {% endif %}"> {% block content %}{% endblock %}</main><footer class="footer-custom">
+<p class="float-right"></p>
+<p>&copy; 2022-2023 Le Grand B@z@r, Inc.</p></footer><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="{{asset('assets/js/bootstrap.bundle.js')}}"></script></body></html>
