@@ -1,0 +1,15 @@
+# fly.toml file for your Symfony app
+
+app = "legrandbazar"
+
+[build]
+  image = "Dockerfile"
+
+[env]
+  # Variables d'environnement nécessaires (comme pour Symfony)
+  SYMFONY_ENV = "prod"
+  APP_SECRET = "your-app-secret"
+  DATABASE_URL = "mysql://root:@localhost:3306/legrandbazar2"
+
+[deploy]
+  release_command = "php bin/console doctrine:migrations:migrate --no-interaction"
