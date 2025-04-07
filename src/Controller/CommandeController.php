@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class CommandeController extends AbstractController
 {
 
-
-
     /**
      * @Route("mon-panier/commande", name="commande")
      */
